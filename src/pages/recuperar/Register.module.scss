@@ -1,0 +1,240 @@
+@import 'https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap';
+
+.background {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+}
+
+.topWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    font-size: 40px;
+    margin: 15px 0px;
+}
+
+.subtitle{
+    color: gray;
+}
+
+.centerWrapper {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 20px;
+    min-width: 500px;
+    max-width: 700px;
+    border-radius: 50px;
+    box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 10px 36px 0px rgba(0, 0, 0, 0.75);
+
+    h1 {
+        font-size: 3em;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+
+.logo {
+    height: 80px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.fields{
+    display: flex;
+    width: 500px;
+}
+.section{
+    flex: 1;
+}
+
+.group {
+    min-width: 500px;
+    gap: 20px;
+    display: flex;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.userOption {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userOption p {
+    color: gray;
+}
+
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.field label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.captchaWrapper{
+    margin-top: 10px;
+    display:flex;
+    justify-content: center;
+}
+
+.buttonWrapper {
+    padding: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background: #005973;
+    box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border: none;
+}
+
+.button:after {
+    content: " ";
+    width: 0%;
+    height: 100%;
+    background: #FFD401;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    right: 0;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.button:hover::after {
+    right: auto;
+    left: 0;
+    width: 100%;
+}
+
+.button span {
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    padding: 10px 15px;
+    color: #fff;
+    font-size: 1.125em;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    z-index: 20;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover span {
+    color: #005973;
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+/*loading*/
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.spinner .dot {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.spinner .dot::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner .dot {
+    animation: spin 2s infinite;
+}
+
+.spinner .dot:nth-child(2) {
+    animation-delay: 100ms;
+}
+
+.spinner .dot:nth-child(3) {
+    animation-delay: 200ms;
+}
+
+.spinner .dot:nth-child(4) {
+    animation-delay: 300ms;
+}
+
+.spinner .dot:nth-child(5) {
+    animation-delay: 400ms;
+}
+/*end loading*/
+
+.olvido{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.olvido span{
+    width: 100%;
+}
+
+.olvido span:hover{
+    cursor: pointer;
+}

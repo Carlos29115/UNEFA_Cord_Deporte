@@ -1,0 +1,59 @@
+.check_field__title {
+  margin-bottom: 10px;
+}
+
+.check_field__group {
+  overflow: hidden;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+}
+
+.check_field__group-content {
+  overflow: auto;
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  max-height: 250px;
+  padding: 18px;
+}
+.check_field__group-content2 {
+  overflow: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+  padding: 18px;
+}
+.check_field__group-error {
+  border-color: #ddd;
+}
+
+.check_field__item {
+  padding: 6px;
+  margin: 0;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+
+  span {
+    padding: 0 !important;
+  }
+
+  &:nth-child(3n) {
+    border-right: unset;
+  }
+}
+
+
+
+.input_text {
+  position: relative;
+  width: 100%;
+  &_error {
+    margin: 5px;
+    color: #ff3734;
+    position: absolute;
+  }
+}

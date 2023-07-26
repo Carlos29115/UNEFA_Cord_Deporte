@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.form_groups_2 {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form_groups_1 {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 2fr;
+}
+
+.form_groups_button {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 2fr auto;
+}
+
+.form_groups_texts {
+  display: grid;
+  gap: 6px;
+
+  .form_groups_text_title {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px !important;
+  }
+}
