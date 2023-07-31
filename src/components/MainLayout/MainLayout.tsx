@@ -14,7 +14,6 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import NAVIGATION from "routes/navigation";
 import { localToken } from "constants/index";
-import banner from "img/banner.jpg";
 
 const drawerWidth = 240;
 
@@ -38,13 +37,13 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 
 const MainLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const navigate = useNavigate();
-  const token = searchItemLocal(localToken);
-  useEffect(
-    () => {
-      if (!token) navigate(NAVIGATION.LOGIN);
-    },
-    [token, navigate]
-  );
+  // const token = searchItemLocal(localToken);
+  // useEffect(
+  //   () => {
+  //     if (!token) navigate(NAVIGATION.LOGIN);
+  //   },
+  //   [token, navigate]
+  // );
 
   const [open, setOpen] = useState(false);
 
@@ -58,26 +57,8 @@ const MainLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
   return (
     <>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#005b9a",
-        }}
-      >
-        <figure
-          style={{
-            backgroundColor: "#005b9a",
-            width: "56.5rem",
-            margin: "0",
-            height: "70px",
-          }}
-        >
-          <img src={banner} alt="" style={{ width: "100%", height: "70px" }} />
-        </figure>
-      </header>
       <div className="App" style={{ backgroundColor: '#f4f7fe' }}>
-        <div className={styles["buttonDrawer"]}>
+        {/* <div className={styles["buttonDrawer"]}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -87,7 +68,7 @@ const MainLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-        </div>
+        </div> */}
 
         <DrawerMenu open={open} handleDrawerClose={handleDrawerClose} />
         <Main open={open}>

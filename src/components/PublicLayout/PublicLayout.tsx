@@ -6,47 +6,35 @@ import {
   useEffect,
   useState,
 } from "react";
-import banner from "img/banner.jpg";
+import fondo from "img/fondoUnefa.jpg";
+import { Grid } from "@mui/material";
 
 const PublicLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [classPage, setClassPage] = useState(false);
   let location = useLocation();
   useEffect(() => {
     if (location.pathname === "/registrar") {
-      setClassPage(true)
-
+      setClassPage(true);
     } else {
-      setClassPage(false)
+      setClassPage(false);
     }
   }, [location]);
 
   return (
     <div className={styles.app}>
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#005b9a",
-        }}
-      >
-        <figure
-          style={{
-            backgroundColor: "#005b9a",
-            width: "56.5rem",
-            margin: "0",
-            height: "70px",
-          }}
-        >
-          <img src={banner} alt="" style={{ width: "100%", height: "70px" }} />
-        </figure>
-      </header>
-      <div className={styles.background}>
-        <div
-          className={classPage ? styles.registerClass : styles.centerWrapper}
-        >
-          <div>{children ? children : <Outlet />}</div>
-        </div>
-      </div>
+      <Grid container direction={"row"} className={styles.background}>
+        <Grid item md={5}>
+          <div
+            className={classPage ? styles.registerClass : styles.centerWrapper}
+          >
+            <div className={styles.containerChildrens}>
+              {children ? children : <Outlet />}
+            </div>
+          </div>
+        </Grid>
+        <Grid item md={7} className={styles.containerImage} sx={{background: `url(${fondo})no-repeat center center`}}>
+        </Grid>
+      </Grid>
     </div>
   );
 };

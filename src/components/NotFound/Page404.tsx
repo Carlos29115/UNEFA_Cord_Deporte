@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Helmet } from 'react-helmet-async';
 /* @Images */
-import Error404 from 'img/error_404.jpg';
-import Error404_1 from 'img/error_404-1.jpg';
 
 
 import { PREFIX_DASHBOARD } from 'routes/navigation';
@@ -55,13 +53,12 @@ const Page404 = () => {
             {Math.random() <= 0.5 ? (
               <img
                 className={classes.image}
-                src={Error404}
+                src={""}
                 alt='Pagina no encontrada'
               />
             ) : (
               <img
                 className={classes.image}
-                src={Error404_1}
                 alt='Pagina no encontrada'
               />
             )}

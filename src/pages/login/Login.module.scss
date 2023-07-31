@@ -25,6 +25,33 @@
   }
 }
 
+.buttonLogin{
+  color: #ffffff !important;
+  background-color: #4A55A2 !important;
+  font-weight: bold !important;
+  border-color: #4A55A2 !important;
+  margin-bottom: 10px !important;
+}
+
+.recoverPassword{
+  color: #686464;
+  text-decoration: underline;
+}
+
+.containerTittle{
+
+  h1 {
+    font-family: 'REM', sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    color: #7895CB;
+  }
+
+  p {
+    color: #686464;
+  }
+}
+
 .logo {
   height: 80px;
   width: 100%;
