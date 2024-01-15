@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import {
   CustomButton,
-  FormDashboard,
+  FormRegister,
   TextField,
   TextFieldAutoC,
   TextFieldSelect,
@@ -74,7 +74,7 @@ const Register = () => {
         setIsLoading(true);
         await getRegisterServices({ datos });
         openAlert("Se registro exitosamente");
-        navigate("/iniciar-sesion", { replace: true, },);
+        navigate("/iniciar-sesion", { replace: true });
       } catch (error) {
         const err = error as any;
 
@@ -94,9 +94,8 @@ const Register = () => {
   }, [token, navigate]);
 
   return (
-
     <>
-      <FormDashboard
+      <FormRegister
         onSubmit={onSubmit}
         rowData={rowData}
         loadingService={loadingService}

@@ -13,6 +13,8 @@ import { useAlert } from "hooks/useAlert";
 import { GridCellParams, GridColDef } from "@mui/x-data-grid";
 import { differenceInCalendarYears, parse } from "date-fns";
 import { TOpenModals, TPageState } from "types";
+import { Typography } from "@mui/material";
+import FormDashboard from "./components/FormDashboard/FormDashboard";
 
 const Dashboard = () => {
   const { openAlert } = useAlert();
@@ -141,12 +143,12 @@ const Dashboard = () => {
   return (
     <section>
       <div className={styles["modules__header"]}>
-        {/*   <Typography className={styles["page-title"]} component="h1">
-          {dataUser ? dataUser?.userRole?.ente?.name : "Dashboard"}
-        </Typography> */}
+        <Typography className={styles["page-title"]} component="h1">
+          Coordinación de deporte - Estudiantes
+        </Typography>
         <CustomButton
           typeVariant="contained"
-          label="Agregar estudiante"
+          label="Agregar estudiante +"
           onClick={handleCreate}
           className={styles["button-header"]}
         />
@@ -160,12 +162,14 @@ const Dashboard = () => {
       </CardNormal>
       <CustomModal
         modalTitle={
-          rowData.isNewRecord ? "Crear estudiante" : "Actualizar datos del estudiante"
+          rowData.isNewRecord
+            ? "Crear estudiante"
+            : "Actualizar datos del estudiante"
         }
         openModal={openModal.modalCreate as boolean}
         setOpenModal={setOpenModal}
       >
-        aqui deberia ir un formulario
+        <FormDashboard />
       </CustomModal>
       <DialogConfirm
         onDelete={onDeleteRow}

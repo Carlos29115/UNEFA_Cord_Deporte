@@ -14,6 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import NAVIGATION from "routes/navigation";
 import { localToken } from "constants/index";
+import cintillo from "../../img/cintillo_unefa.jpg";
 
 const drawerWidth = 240;
 
@@ -57,7 +58,10 @@ const MainLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
 
   return (
     <>
-      <div className="App" style={{ backgroundColor: '#f4f7fe' }}>
+      <div className={styles["cintillo"]}>
+        <img src={cintillo} alt="cintillo" />
+      </div>
+      <div className="App" style={{ backgroundColor: "#2d90c4" }}>
         {/* <div className={styles["buttonDrawer"]}>
           <IconButton
             color="inherit"
@@ -69,7 +73,6 @@ const MainLayout: FunctionComponent<PropsWithChildren> = ({ children }) => {
             <MenuIcon />
           </IconButton>
         </div> */}
-
         <DrawerMenu open={open} handleDrawerClose={handleDrawerClose} />
         <Main open={open}>
           <section className={styles["content"]}>
