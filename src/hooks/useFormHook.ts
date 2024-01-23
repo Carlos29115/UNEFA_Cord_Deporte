@@ -8,10 +8,11 @@ export const useFormHook = (DEFAULT_VALUES: unknown = {}) => {
     getValues,
     setError,
     clearErrors,
+    watch,
     reset
   } = useForm({ defaultValues: DEFAULT_VALUES as any });
 
-const handleBlurPassword = () => {
+  const handleBlurPassword = () => {
     if (getValues('password') !== getValues('password2')) {
       setError('password2', {
         type: 'igualdad',
@@ -28,6 +29,7 @@ const handleBlurPassword = () => {
     getValues,
     setError,
     clearErrors,
+    watch,
     reset,
     errors,
     handleBlurPassword,

@@ -16,9 +16,11 @@ import {
 import { styled } from "@mui/material/styles";
 import { CustomButton } from "components";
 import React, { useState } from "react";
-import FormStepOne from "../FormStepOne";
+import FormStepOne from "./Steps/FormStepOne";
 
 import styles from "./FormDashboard.module.scss";
+import FormStepTwo from "./Steps/FormStepTwo";
+import FormStepThree from "./Steps/FormStepThree";
 
 const FormDashboard = () => {
   const [activeStep, setActiveStep] = useState(0);
@@ -129,7 +131,9 @@ const FormDashboard = () => {
               </Step>
             ))}
           </Stepper>
-          {activeStep === 1 && <FormStepOne />}
+          {activeStep === 0 && <FormStepOne />}
+          {activeStep === 1 && <FormStepTwo />}
+          {activeStep === 2 && <FormStepThree />}
           <footer className={styles["footer_content"]}>
             {activeStep !== 0 && (
               <CustomButton
