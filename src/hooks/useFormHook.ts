@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 
 export const useFormHook = (DEFAULT_VALUES: unknown = {}) => {
   const {
@@ -9,14 +9,14 @@ export const useFormHook = (DEFAULT_VALUES: unknown = {}) => {
     setError,
     clearErrors,
     watch,
-    reset
+    reset,
   } = useForm({ defaultValues: DEFAULT_VALUES as any });
 
   const handleBlurPassword = () => {
-    if (getValues('password') !== getValues('password2')) {
-      setError('password2', {
-        type: 'igualdad',
-        message: 'contraseñas no son iguales'
+    if (getValues("password") !== getValues("password2")) {
+      setError("password2", {
+        type: "igualdad",
+        message: "contraseñas no son iguales",
       });
     } else {
       clearErrors();
@@ -33,6 +33,6 @@ export const useFormHook = (DEFAULT_VALUES: unknown = {}) => {
     reset,
     errors,
     handleBlurPassword,
-    isSubmitSuccessful
+    isSubmitSuccessful,
   };
 };

@@ -1,9 +1,7 @@
-import GroupAddIcon from "@mui/icons-material/GroupAdd";
-import SchoolIcon from "@mui/icons-material/School";
-import SettingsIcon from "@mui/icons-material/Settings";
-import SportsIcon from "@mui/icons-material/Sports";
-import VideoLabelIcon from "@mui/icons-material/VideoLabel";
 import PersonIcon from "@mui/icons-material/Person";
+import SchoolIcon from "@mui/icons-material/School";
+import SportsIcon from "@mui/icons-material/Sports";
+import MedicalInformationIcon from "@mui/icons-material/MedicalInformation";
 import {
   Stack,
   Step,
@@ -14,23 +12,56 @@ import {
   stepConnectorClasses,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { CustomButton } from "components";
 import React, { useState } from "react";
 import FormStepOne from "./Steps/FormStepOne";
 
-import styles from "./FormDashboard.module.scss";
-import FormStepTwo from "./Steps/FormStepTwo";
 import FormStepThree from "./Steps/FormStepThree";
+import FormStepTwo from "./Steps/FormStepTwo";
 
 const FormDashboard = () => {
+  const DEFAULT_VALUES = {
+    primerNombre: "",
+    segundoNombre: "",
+    primerApellido: "",
+    segundoApellido: "",
+    gender: "",
+    stature: "",
+    peso: "",
+    dni: "",
+    pasaporte: "",
+    mobile: "",
+    email: "",
+    birthdate: "",
+    placeOfBirth: "",
+    directionRedes: "",
+    shoeSize: "",
+    monkeySize: "",
+    flannelSize: "",
+    direction_residence: "",
+    fechaIngreso: "",
+    career: "",
+    semester: "",
+    core: "",
+    contactNumber: "",
+    discipline_deportiva: "",
+    age_started: "",
+    direction_training: "",
+    fieldArrayNacionality: [{ date: "", achievement: "" }] as any,
+    fieldArrayInternacionality: [{ date: "", achievement: "" }] as any,
+    stateSelection: "",
+    nationalitySelection: "",
+    universityEvent: "",
+  };
+
   const [activeStep, setActiveStep] = useState(0);
+  const [worldData, setWorldData] = useState(DEFAULT_VALUES);
 
   const handleNext = () => {
-    setActiveStep((activeStep) => activeStep + 1);
+    setActiveStep((activeStep: any) => activeStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((activeStep) => activeStep - 1);
+    setActiveStep((activeStep: any) => activeStep - 1);
   };
 
   const ColorlibStepIconRoot = styled("div")<{
@@ -64,6 +95,7 @@ const FormDashboard = () => {
       1: <PersonIcon />,
       2: <SchoolIcon />,
       3: <SportsIcon />,
+      4: <MedicalInformationIcon />,
     };
 
     return (
@@ -105,59 +137,57 @@ const FormDashboard = () => {
     "Datos Personales",
     "Datos universitarios del estudiante atleta",
     "Datos deportivos del estudiante atleta",
+    "Datos de salud del estudiante atleta",
   ];
 
   return (
     <>
-      <form>
-        {/* <Typography>Datos del estudiante</Typography> */}
-        <Stack
-          direction="column"
-          spacing={3}
-          justifyContent="center"
-          maxWidth={1200}
+      {/* <Typography>Datos del estudiante</Typography> */}
+      <Stack
+        direction="column"
+        spacing={3}
+        justifyContent="center"
+        maxWidth={1200}
+      >
+        <Stepper
+          alternativeLabel
+          activeStep={activeStep}
+          sx={{ marginTop: "15px" }}
+          connector={<ColorlibConnector />}
         >
-          <Stepper
-            alternativeLabel
-            activeStep={activeStep}
-            sx={{ marginTop: "15px" }}
-            connector={<ColorlibConnector />}
-          >
-            {steps.map((label) => (
-              <Step key={label}>
-                <StepLabel StepIconComponent={ColorlibStepIcon}>
-                  {label}
-                </StepLabel>
-              </Step>
-            ))}
-          </Stepper>
-          {activeStep === 0 && <FormStepOne />}
-          {activeStep === 1 && <FormStepTwo />}
-          {activeStep === 2 && <FormStepThree />}
-          <footer className={styles["footer_content"]}>
-            {activeStep !== 0 && (
-              <CustomButton
-                typeVariant="contained"
-                label="Atras"
-                onClick={() => {
-                  handleBack();
-                }}
-                className={styles["footer_content_back"]}
-              />
-            )}
-            {activeStep !== steps.length - 1 && (
-              <CustomButton
-                typeVariant="contained"
-                label="Siguiente"
-                onClick={() => {
-                  handleNext();
-                }}
-                className={styles["footer_content_next"]}
-              />
-            )}
-          </footer>
-        </Stack>
-      </form>
+          {steps.map((label) => (
+            <Step key={label}>
+              <StepLabel StepIconComponent={ColorlibStepIcon}>
+                {label}
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        {activeStep === 0 && (
+          <FormStepOne
+            worldData={worldData}
+            setWorldData={setWorldData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+        )}
+        {activeStep === 1 && (
+          <FormStepTwo
+            worldData={worldData}
+            setWorldData={setWorldData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+        )}
+        {activeStep === 2 && (
+          <FormStepThree
+            worldData={worldData}
+            setWorldData={setWorldData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+        )}
+      </Stack>
     </>
   );
 };
