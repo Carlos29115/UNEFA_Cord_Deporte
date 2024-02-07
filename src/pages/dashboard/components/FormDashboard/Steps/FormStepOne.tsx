@@ -187,6 +187,7 @@ const FormStepOne = ({
                 control={control}
                 variant="standard"
                 type="date"
+                labelProps={{ shrink: true }}
                 error={Boolean(errors.birthdate)}
                 errmsg={errors.birthdate}
                 rules={RULES.required}
