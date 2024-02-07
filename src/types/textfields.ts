@@ -1,11 +1,11 @@
-import { DatePickerProps } from '@mui/lab';
+import { DatePickerProps } from "@mui/lab";
 import {
   BaseTextFieldProps,
   InputLabelProps,
-  SelectProps
-} from '@mui/material';
+  SelectProps,
+} from "@mui/material";
 // import { TCheckedState } from 'types'
-import { FieldValues, UseControllerProps } from 'react-hook-form';
+import { FieldValues, UseControllerProps } from "react-hook-form";
 
 export interface IFormFields
   extends BaseTextFieldProps,
@@ -36,6 +36,7 @@ export interface ISelectFields extends SelectProps, UseControllerProps {
   handleChange?: (e: any, name: any) => void;
   defaultValue?: null | number | string | boolean;
   options?: Record<string, unknown>[];
+  errmsg?: any;
 }
 export interface ISwitchFields extends IFormFields {
   checked: boolean;

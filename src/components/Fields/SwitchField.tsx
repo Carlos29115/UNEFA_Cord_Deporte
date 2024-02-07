@@ -30,6 +30,7 @@ const SwitchField: React.FC<ISwitchFields> = ({
               name={name}
             />
           }
+          sx={{ flexDirection: "column-reverse" }}
           label={label}
           value={value}
         />
