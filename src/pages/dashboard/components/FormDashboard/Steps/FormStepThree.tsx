@@ -69,6 +69,7 @@ const FormStepThree = ({
       await setWorldData((prev: any) => {
         return { ...prev, ...data };
       });
+      handleNext();
     } catch (error: any) {
       openAlert(error.response.data.msj, { variant: "error" });
     } finally {
@@ -81,7 +82,7 @@ const FormStepThree = ({
       <form onSubmit={handleSubmit(presubmit)}>
         <Stack spacing={3}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={8}>
               <TextFieldSelect
                 name="discipline_deportiva"
                 label="Disciplina deportiva"
@@ -89,7 +90,7 @@ const FormStepThree = ({
                 variant="standard"
                 options={disciplines}
                 error={Boolean(errors.discipline_deportiva)}
-                // errmsg={errors.discipline_deportiva}
+                errmsg={errors.discipline_deportiva}
                 rules={RULES.required}
               />
             </Grid>
@@ -107,7 +108,7 @@ const FormStepThree = ({
               />
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={12}>
               <TextField
                 name="direction_training"
                 label="Dirección del lugar de entrenamiento"
@@ -329,12 +330,9 @@ const FormStepThree = ({
                 sx={{ display: "flex", justifyContent: "flex-end" }}
               >
                 <CustomButton
-                  typeAction="button"
+                  typeAction="submit"
                   typeVariant="contained"
                   label="Siguiente"
-                  onClick={() => {
-                    console.log("worldData", worldData);
-                  }}
                   className={styles["footer_content_next"]}
                 />
               </Grid>

@@ -17,6 +17,7 @@ import FormStepOne from "./Steps/FormStepOne";
 
 import FormStepThree from "./Steps/FormStepThree";
 import FormStepTwo from "./Steps/FormStepTwo";
+import FormStepFour from "./Steps/FormStepFour";
 
 const FormDashboard = () => {
   const DEFAULT_VALUES = {
@@ -181,6 +182,14 @@ const FormDashboard = () => {
         )}
         {activeStep === 2 && (
           <FormStepThree
+            worldData={worldData}
+            setWorldData={setWorldData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+        )}
+        {activeStep === 3 && (
+          <FormStepFour
             worldData={worldData}
             setWorldData={setWorldData}
             handleNext={handleNext}

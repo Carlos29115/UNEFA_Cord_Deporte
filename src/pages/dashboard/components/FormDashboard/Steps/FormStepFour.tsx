@@ -1,17 +1,30 @@
 import { Grid, Stack } from "@mui/material";
-import { TextField, TextFieldSelect } from "components";
+import { CustomButton, TextField, TextFieldSelect } from "components";
+import SwitchField from "components/Fields/SwitchField";
 import { RULES } from "constants/index";
 import { useAlert } from "hooks/useAlert";
 import { useFormHook } from "hooks/useFormHook";
 import { useState } from "react";
+import { disabilitys } from "./constants/disabilitys";
+import styles from "./FormsSteps.module.scss";
+import { estudiantesPost } from "services/estudiantes";
 
 const DEFAULT_VALUES = {
   email: "",
   password: "",
 };
-const FormStepFour = () => {
+const FormStepFour = ({
+  handleNext,
+  handleBack,
+  worldData,
+  setWorldData,
+}: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { control, handleSubmit, errors } = useFormHook(DEFAULT_VALUES);
+  const [checked, setChecked] = useState(false);
+  const [checked2, setChecked2] = useState(false);
+
+  const { control, handleSubmit, errors, getValues } =
+    useFormHook(DEFAULT_VALUES);
   const { openAlert } = useAlert();
 
   const bloodTypes = [
@@ -25,231 +38,10 @@ const FormStepFour = () => {
     { id: "o-", name: "O-" },
   ];
 
-  const disabilitys = {
-    ajedrez: [
-      {
-        id: 1,
-        name: "Auditivo",
-      },
-      {
-        id: 2,
-        name: "Fisica",
-      },
-      {
-        id: 3,
-        name: "Visual",
-      },
-    ],
-    atletismo: [
-      {
-        id: 1,
-        name: "11-13: Discapacidad visual",
-      },
-      { id: 2, name: "20:Discapacidad intelectual" },
-      { id: 3, name: "31-38: Problemas de coordinacion" },
-      {
-        id: 4,
-        name: "Acondroplasia",
-      },
-      {
-        id: 5,
-        name: "42-44: Afectación en extremidades inferiores sin protesis",
-      },
-      {
-        id: 6,
-        name: "45-47: Afectación en extremidades superiores",
-      },
-      {
-        id: 7,
-        name: "51-57: Sillas de ruedas",
-      },
-      {
-        id: 8,
-        name: "61-64: Afectación extremidades inferiores",
-      },
-    ],
-    ciclismo: [
-      {
-        id: 1,
-        name: "ciegos - con baja visión",
-      },
-      {
-        id: 2,
-        name: "LC1 - Discapacidad extremidades inferiores",
-      },
-      {
-        id: 3,
-        name: "LC2 - Discapacidad en una pierna pero puede pedalear con normalidad",
-      },
-      {
-        id: 4,
-        name: "LC3 - Discapacidad en los miembros inferiores",
-      },
-      {
-        id: 5,
-        name: "LC4 - Discapacidad severa - ambas extremidades",
-      },
-    ],
-    esgrimaRuedas: [
-      {
-        id: 1,
-        name: "1A - Sillas de ruedas - minusvalia en brazo",
-      },
-      {
-        id: 2,
-        name: "1B - Sillas de ruedas - minusvalia para flexionar brazos",
-      },
-      {
-        id: 3,
-        name: "2 - Silla de ruedas",
-      },
-      {
-        id: 4,
-        name: "3 - Silla de ruedas - no puede utilizar las piernas como ayuda",
-      },
-      {
-        id: 5,
-        name: "4 - Silla de ruedas - posibilidad de usar las piernas",
-      },
-    ],
-    futbol: [
-      {
-        id: 1,
-        name: "B1 - Ceguera total",
-      },
-      {
-        id: 2,
-        name: "FT5 - Limitaciones en las extremidades inferiores",
-      },
-      {
-        id: 3,
-        name: "FT6 - Dificultad de coordinación",
-      },
-      {
-        id: 4,
-        name: "FT7 - hemiplejicos - afectación en uno de los lados del cuerpo",
-      },
-      {
-        id: 5,
-        name: "FT8 - Deterioro",
-      },
-    ],
-    judo: [
-      {
-        id: 1,
-        name: "B1-  Ceguera total",
-      },
-      {
-        id: 2,
-        name: "B2 - Media",
-      },
-      {
-        id: 3,
-        name: "B3 - Poca visión",
-      },
-    ],
-    levPesas: [
-      {
-        id: 1,
-        name: "A1 - A4: Amputados",
-      },
-      {
-        id: 2,
-        name: "Mínima Minusvalía",
-      },
-      {
-        id: 3,
-        name: "Parálisis cerebral",
-      },
-      {
-        id: 4,
-        name: "Lesión medular",
-      },
-    ],
-    natacion: [
-      {
-        id: 1,
-        name: "S1- S10 : Discapacidad fisica - paralisis cerebral",
-      },
-      {
-        id: 2,
-        name: "S11 : Ceguera",
-      },
-      {
-        id: 3,
-        name: "S12 - S13:  Deficiencia visual",
-      },
-      {
-        id: 4,
-        name: "S14 : Discapacidad intelectual",
-      },
-    ],
-    taekwondo: [
-      {
-        id: 1,
-        name: "Auditivo",
-      },
-      {
-        id: 2,
-        name: "Fisica",
-      },
-      {
-        id: 3,
-        name: "Visual",
-      },
-    ],
-    tenisRuedas: [
-      {
-        id: 1,
-        name: "Auditivo",
-      },
-      {
-        id: 2,
-        name: "Fisica",
-      },
-      {
-        id: 3,
-        name: "Visual",
-      },
-    ],
-    triatlon: [
-      {
-        id: 1,
-        name: "PT1 - Paraplejia - tetraplejia - amputación de piernas",
-      },
-      {
-        id: 2,
-        name: "PT2 : Discapacidad fisica - paralisis cerebral - elevada",
-      },
-      {
-        id: 3,
-        name: "PT3 : Discapacidad fisica - paralisis cerebral - moderada",
-      },
-      {
-        id: 4,
-        name: "PT4 : Discapacidad fisica - paralisis cerebral - leve",
-      },
-      {
-        id: 5,
-        name: "PT5: Discapacidad visual total o parcial",
-      },
-    ],
-    voleibolSentado: [
-      {
-        id: 1,
-        name: "Amputación debajo de la rodilla",
-      },
-      {
-        id: 2,
-        name: "Amputación por encima de la rodilla - rigidez",
-      },
-    ],
-  };
-
   const onSubmit = async (data: any) => {
     try {
       setIsLoading(true);
-      // const response = await getLoginServices({ data });
+      await estudiantesPost({ payload: { ...worldData, ...data } });
     } catch (error: any) {
       openAlert(error.response.data.msj, { variant: "error" });
     } finally {
@@ -262,44 +54,85 @@ const FormStepFour = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <TextFieldSelect
                 name="bloodType"
                 label="Tipo de sangre"
                 control={control}
                 variant="standard"
                 options={bloodTypes}
-                error={Boolean(errors.username)}
+                error={Boolean(errors.bloodType)}
+                errmsg={errors.bloodType}
                 rules={RULES.required}
               />
             </Grid>
 
-            <Grid item xs={12} sm={6}>
-              <TextField
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <SwitchField
                 name="isAllergic"
-                label="Es alergico?"
+                label="¿Sufre de alguna alergia?"
+                checked={checked}
+                handleChecked={(e) => setChecked((prev) => !prev)}
                 control={control}
                 variant="standard"
-                type="checkbox"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.isAllergic)}
+                errmsg={errors.isAllergic}
+                rules={RULES.required}
+              />
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              {getValues("isAllergic") && (
+                <TextField
+                  name="Allergics"
+                  label="Especifique sus alergias"
+                  control={control}
+                  variant="standard"
+                  type="textArea"
+                  error={Boolean(errors.Allergics)}
+                  errmsg={errors.Allergics}
+                  rules={RULES.required}
+                />
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ display: "flex", justifyContent: "center" }}
+            >
+              <SwitchField
+                name="isDisability"
+                label="¿Tiene alguna discapacidad?"
+                checked={checked2}
+                handleChecked={(e) => setChecked2((prev) => !prev)}
+                control={control}
+                variant="standard"
+                error={Boolean(errors.isDisability)}
+                errmsg={errors.isDisability}
                 rules={RULES.required}
               />
             </Grid>
 
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="Allergics"
-                label="Especifique sus alergias"
-                control={control}
-                variant="standard"
-                type="textArea"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
-                rules={RULES.required}
-              />
+            <Grid item xs={12} sm={8}>
+              {getValues("isDisability") && (
+                <TextFieldSelect
+                  name="disability"
+                  label="Tipos de discapacidad"
+                  control={control}
+                  variant="standard"
+                  options={disabilitys[worldData?.discipline_deportiva]}
+                  type="text"
+                  error={Boolean(errors.disability)}
+                  errmsg={errors.disability}
+                  rules={RULES.required}
+                />
+              )}
             </Grid>
-
             <Grid item xs={12} sm={12}>
               <TextField
                 name="medication"
@@ -308,35 +141,38 @@ const FormStepFour = () => {
                 control={control}
                 variant="standard"
                 type="text"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.medication)}
+                errmsg={errors.medication}
                 rules={RULES.required}
               />
             </Grid>
-
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="isDisability"
-                label="Tiene alguna discapacidad??"
-                control={control}
-                variant="standard"
-                type="radio"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
-                rules={RULES.required}
-              />
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <TextField
-                name="disability"
-                label="Tipos de discapacidad"
-                control={control}
-                variant="standard"
-                type="text"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
-                rules={RULES.required}
-              />
+            <Grid item xs={12}>
+              <Grid container>
+                <Grid item xs={6}>
+                  <CustomButton
+                    typeVariant="contained"
+                    label="Atras"
+                    onClick={async () => {
+                      const data = await getValues();
+                      setWorldData(data);
+                      handleBack();
+                    }}
+                    className={styles["footer_content_back"]}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                  <CustomButton
+                    typeAction="submit"
+                    typeVariant="contained"
+                    label="Registrar"
+                    className={styles["footer_content_next"]}
+                  />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Stack>

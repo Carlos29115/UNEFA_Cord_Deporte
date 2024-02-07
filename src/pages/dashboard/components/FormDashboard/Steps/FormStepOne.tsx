@@ -44,7 +44,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.primerNombre)}
                 errmsg={errors.primerNombre}
-                rules={RULES.required}
+                rules={RULES.names}
               />
             </Grid>
 
@@ -57,7 +57,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.segundoNombre)}
                 errmsg={errors.segundoNombre}
-                // rules={RULES.required}
+                rules={RULES.names_no_required}
               />
             </Grid>
 
@@ -70,7 +70,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.primerApellido)}
                 errmsg={errors.primerApellido}
-                rules={RULES.required}
+                rules={RULES.names}
               />
             </Grid>
 
@@ -83,7 +83,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.segundoApellido)}
                 errmsg={errors.segundoApellido}
-                rules={RULES.required}
+                rules={RULES.names_no_required}
               />
             </Grid>
 
@@ -111,7 +111,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.stature)}
                 errmsg={errors.stature}
-                rules={RULES.required}
+                rules={RULES.number}
               />
             </Grid>
 
@@ -124,7 +124,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.peso)}
                 errmsg={errors.peso}
-                rules={RULES.required}
+                rules={RULES.number}
               />
             </Grid>
 
@@ -137,7 +137,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.dni)}
                 errmsg={errors.dni}
-                rules={RULES.required}
+                rules={RULES.cedula}
               />
             </Grid>
 
@@ -163,7 +163,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.mobile)}
                 errmsg={errors.mobile}
-                rules={RULES.required}
+                rules={RULES.cellphone}
               />
             </Grid>
 
@@ -176,7 +176,7 @@ const FormStepOne = ({
                 type="email"
                 error={Boolean(errors.email)}
                 errmsg={errors.email}
-                rules={RULES.required}
+                rules={RULES.correo}
               />
             </Grid>
 
@@ -186,7 +186,7 @@ const FormStepOne = ({
                 label="Fecha de nacimiento"
                 control={control}
                 variant="standard"
-                type="text"
+                type="date"
                 error={Boolean(errors.birthdate)}
                 errmsg={errors.birthdate}
                 rules={RULES.required}
@@ -228,7 +228,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.shoeSize)}
                 errmsg={errors.shoeSize}
-                rules={RULES.required}
+                rules={RULES.number}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -240,7 +240,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.monkeySize)}
                 errmsg={errors.monkeySize}
-                rules={RULES.required}
+                rules={RULES.number}
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -252,7 +252,7 @@ const FormStepOne = ({
                 type="text"
                 error={Boolean(errors.flannelSize)}
                 errmsg={errors.flannelSize}
-                rules={RULES.required}
+                rules={RULES.number}
               />
             </Grid>
             <Grid item xs={12} sm={12}>

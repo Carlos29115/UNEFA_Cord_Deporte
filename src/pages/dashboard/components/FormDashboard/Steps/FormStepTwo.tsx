@@ -74,7 +74,7 @@ const FormStepTwo = ({
               />
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={8}>
               <TextField
                 name="core"
                 label="Núcleo o extensión donde cursa"
@@ -87,7 +87,7 @@ const FormStepTwo = ({
               />
             </Grid>
 
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={4}>
               <TextField
                 name="contactNumber"
                 label="Numero de contacto telefónico del coordinador de carrera"
@@ -95,7 +95,7 @@ const FormStepTwo = ({
                 variant="standard"
                 error={Boolean(errors.contactNumber)}
                 errmsg={errors.contactNumber}
-                rules={RULES.required}
+                rules={RULES.cellphone}
               />
             </Grid>
             <Grid item xs={12}>
