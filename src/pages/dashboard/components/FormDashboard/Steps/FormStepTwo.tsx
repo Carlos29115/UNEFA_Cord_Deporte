@@ -1,23 +1,27 @@
 import { Grid, Stack } from "@mui/material";
-import { TextField, TextFieldSelect } from "components";
+import { CustomButton, TextField, TextFieldSelect } from "components";
 import { RULES } from "constants/index";
 import { useAlert } from "hooks/useAlert";
 import { useFormHook } from "hooks/useFormHook";
 import React, { useState } from "react";
 
-const DEFAULT_VALUES = {
-  email: "",
-  password: "",
-};
-const FormStepTwo = () => {
+const FormStepTwo = ({
+  handleNext,
+  handleBack,
+  worldData,
+  setWorldData,
+}: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { control, handleSubmit, errors } = useFormHook(DEFAULT_VALUES);
+  const { control, handleSubmit, errors, getValues } = useFormHook(worldData);
   const { openAlert } = useAlert();
 
   const onSubmit = async (data: any) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
-      // const response = await getLoginServices({ data });
+      await setWorldData((prev: any) => {
+        return { ...prev, ...data };
+      });
+      handleNext();
     } catch (error: any) {
       openAlert(error.response.data.msj, { variant: "error" });
     } finally {
@@ -33,13 +37,13 @@ const FormStepTwo = () => {
             <Grid item xs={12} sm={4}>
               <TextField
                 label="Fecha de ingreso a la universidad"
-                name="fecha_ingreso"
+                name="fechaIngreso"
                 control={control}
                 variant="standard"
                 type="date"
                 labelProps={{ shrink: true }}
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.fechaIngreso)}
+                errmsg={errors.fechaIngreso}
                 rules={RULES.required}
               />
             </Grid>
@@ -51,8 +55,8 @@ const FormStepTwo = () => {
                 control={control}
                 variant="standard"
                 type="text"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.career)}
+                errmsg={errors.career}
                 rules={RULES.required}
               />
             </Grid>
@@ -64,8 +68,8 @@ const FormStepTwo = () => {
                 control={control}
                 variant="standard"
                 type="text"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.semester)}
+                errmsg={errors.semester}
                 rules={RULES.required}
               />
             </Grid>
@@ -77,22 +81,48 @@ const FormStepTwo = () => {
                 control={control}
                 variant="standard"
                 type="text"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.core)}
+                errmsg={errors.core}
                 rules={RULES.required}
               />
             </Grid>
 
             <Grid item xs={12} sm={8}>
               <TextField
-                name="contact_number"
+                name="contactNumber"
                 label="Numero de contacto telefónico del coordinador de carrera"
                 control={control}
                 variant="standard"
-                error={Boolean(errors.username)}
-                errmsg={errors.username}
+                error={Boolean(errors.contactNumber)}
+                errmsg={errors.contactNumber}
                 rules={RULES.required}
               />
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container>
+                <Grid item xs={6}>
+                  <CustomButton
+                    typeVariant="contained"
+                    label="Atras"
+                    onClick={async () => {
+                      const data = await getValues();
+                      setWorldData(data);
+                      handleBack();
+                    }}
+                  />
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  sx={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                  <CustomButton
+                    typeAction="submit"
+                    typeVariant="contained"
+                    label="Siguiente"
+                  />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Stack>
