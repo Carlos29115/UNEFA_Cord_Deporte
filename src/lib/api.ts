@@ -1,12 +1,12 @@
 // Vendors
-import axios, { AxiosInstance } from 'axios';
-import { localToken } from '../constants';
-import { removeItemLocal } from 'utils/helpers';
+import axios, { AxiosInstance } from "axios";
+import { localToken } from "../constants";
+import { removeItemLocal } from "utils/helpers";
 
 const BASE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://172.17.200.200:8000/api'
-    : 'https://premioscyt.mincyt.gob.ve/api';
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_API_URL
+    : process.env.REACT_APP_API_URL;
 //const BASE_URL = 'http://172.17.200.200:3333/api';
 
 /**
@@ -17,10 +17,10 @@ const API: AxiosInstance = axios.create({
 });
 
 API.interceptors.response.use(
-  response => {
+  (response) => {
     return response;
   },
-  error => {
+  (error) => {
     if (403 === error.response.status || 401 === error.response.status) {
       removeItemLocal(localToken);
       return Promise.reject(error);
