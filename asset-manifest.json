@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/UNEFA_Cord_Deporte/static/css/main.c81862fb.css",
+    "main.js": "/UNEFA_Cord_Deporte/static/js/main.ffbf3c50.js",
+    "static/js/787.47a7cf45.chunk.js": "/UNEFA_Cord_Deporte/static/js/787.47a7cf45.chunk.js",
+    "static/media/cintillo_unefa.jpg": "/UNEFA_Cord_Deporte/static/media/cintillo_unefa.da31c4c70f12734859bd.jpg",
+    "static/media/fondoUnefa.jpg": "/UNEFA_Cord_Deporte/static/media/fondoUnefa.21b52aef4753672bd18a.jpg",
+    "index.html": "/UNEFA_Cord_Deporte/index.html",
+    "main.c81862fb.css.map": "/UNEFA_Cord_Deporte/static/css/main.c81862fb.css.map",
+    "main.ffbf3c50.js.map": "/UNEFA_Cord_Deporte/static/js/main.ffbf3c50.js.map",
+    "787.47a7cf45.chunk.js.map": "/UNEFA_Cord_Deporte/static/js/787.47a7cf45.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c81862fb.css",
+    "static/js/main.ffbf3c50.js"
+  ]
+}
